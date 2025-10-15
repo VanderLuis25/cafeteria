@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartOverlay = document.getElementById("cart-overlay");
   const cartIcon = document.getElementById("cart-icon");
   const closeCartBtn = document.getElementById("close-cart");
+  const checkoutBtn = document.getElementById("checkout-btn");
+  const paymentSection = document.getElementById("payment-section");
+  const paymentButtons = document.querySelectorAll(".payment-btn");
   const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
 
   // --- Lógica do Menu Hambúrguer ---
@@ -287,6 +290,62 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 2000);
   }
   // --- Funções do Carrinho de Compras ---
+  checkoutBtn.addEventListener("click", () => {
+    if (cart.length > 0) {
+      checkoutBtn.classList.add("hidden");
+      paymentSection.classList.remove("hidden");
+    } else {
+      alert("Seu carrinho está vazio!");
+    }
+  });
+
+  paymentButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const method = e.target.dataset.method;
+      simulatePaymentAndPrint(method);
+    });
+  });
+
+  function simulatePaymentAndPrint(method) {
+    // 1. Gera o conteúdo da nota
+    const receiptContainer = document.getElementById("receipt-to-print");
+    let receiptHTML = `
+      <h1>Café Aroma</h1>
+      <p>Data: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}</p>
+      <p>Pagamento: ${method.toUpperCase()}</p>
+      <hr>
+      <ul>
+    `;
+    let totalPrice = 0;
+    cart.forEach((item) => {
+      const itemPrice = parseFloat(item.price.replace("R$ ", "").replace(",", "."));
+      const itemTotal = itemPrice * item.quantity;
+      totalPrice += itemTotal;
+      receiptHTML += `
+        <li>
+          <span>${item.quantity}x ${item.name}</span>
+          <span>R$ ${itemTotal.toFixed(2).replace(".", ",")}</span>
+        </li>
+      `;
+    });
+    receiptHTML += `
+      </ul>
+      <hr>
+      <h3>Total: R$ ${totalPrice.toFixed(2).replace(".", ",")}</h3>
+      <p>Obrigado e volte sempre!</p>
+    `;
+    receiptContainer.innerHTML = receiptHTML;
+
+    // 2. Aciona a impressão
+    window.print();
+
+    // 3. Limpa e reseta o carrinho após a impressão
+    cart = [];
+    updateCartView();
+    toggleCart();
+    checkoutBtn.classList.remove("hidden");
+    paymentSection.classList.add("hidden");
+  }
 
   function toggleCart() {
     cartSidebar.classList.toggle("open");

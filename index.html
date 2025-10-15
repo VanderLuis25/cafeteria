@@ -166,10 +166,31 @@
         <div class="cart-total">
           Total: <span id="cart-total-price">R$ 0,00</span>
         </div>
-        <button class="checkout-btn">Finalizar Pedido</button>
+        <button id="checkout-btn" class="checkout-btn">Finalizar Pedido</button>
+        <!-- Seção de Pagamento (inicialmente oculta) -->
+        <div id="payment-section" class="payment-section hidden">
+          <h4>Como deseja receber?</h4>
+          <div class="delivery-option">
+            <input
+              type="radio"
+              id="retirada"
+              name="delivery"
+              value="retirada"
+              checked
+            />
+            <label for="retirada">Retirada no local</label>
+          </div>
+          <h4>Forma de Pagamento</h4>
+          <div class="payment-options">
+            <button class="payment-btn" data-method="credit">Cartão</button>
+            <button class="payment-btn" data-method="pix">PIX</button>
+            <button class="payment-btn" data-method="cash">Dinheiro</button>
+          </div>
+        </div>
       </div>
     </div>
     <div id="cart-overlay" class="cart-overlay"></div>
+    <div id="receipt-to-print" class="receipt-container"></div>
     <!-- Chatbot -->
     <div class="chatbot-container">
       <div id="chat-window" class="chat-window">
