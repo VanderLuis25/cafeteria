@@ -371,6 +371,7 @@ header {
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
+  align-items: center; /* Adicionado para centralizar os itens */
   overflow: hidden; /* Garante que o conteúdo respeite o border-radius */
   padding-bottom: 1rem; /* Espaço para o botão */
 }
