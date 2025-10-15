@@ -381,7 +381,7 @@ header {
 }
 .produto-img {
   width: 100%;
-  height: 150px;
+  height: 200px;
   overflow: hidden;
   border-radius: 10px 10px 0 0;
 }
@@ -791,9 +791,9 @@ footer {
   color: #868181;
 }
 
-/* ################################## */
-/* ###      MEDIA QUERIES         ### */
-/* ################################## */
+
+/*      MEDIA QUERIES        */
+
 
 /* --- Telas de Tablet (até 992px) --- */
 @media (max-width: 992px) {
@@ -935,18 +935,14 @@ footer {
 
 @media print {
   /* Esconde tudo, exceto a nota fiscal */
-  body,
-  html {
-    height: auto;
-    margin: 0;
-    padding: 0;
+  body > * {
+    display: none;
   }
-  body * {
-    visibility: hidden;
-  }
+
   .receipt-container,
   .receipt-container * {
-    visibility: visible;
+    display: block;
+    visibility: visible; /* Garante que os filhos sejam visíveis */
   }
   .receipt-container {
     display: block;
