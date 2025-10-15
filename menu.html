@@ -29,14 +29,19 @@
             </div>
           </li>
         </ul>
+        <div class="cart-icon-container">
+          <div id="cart-icon" class="cart-icon">
+            🛒
+            <span id="cart-count" class="cart-count">0</span>
+          </div>
+        </div>
         <div class="hamburger"><span></span><span></span><span></span></div>
       </nav>
     </header>
     <main>
       <section id="bebidas-classicas" class="produtos">
-       
-        <div class="container"> 
-            <h1>Nossos Cardápio</h1>
+        <div class="container">
+          <h1>Nossos Cardápio</h1>
           <h2>Bebidas Clássicas</h2>
 
           <div class="produtos-grid">
@@ -50,6 +55,9 @@
                 extraído sob pressão.
               </p>
               <span class="preco">R$ 10,00</span>
+              <button class="add-to-cart-btn" data-id="1">
+                Adicionar ao Carrinho
+              </button>
             </article>
 
             <article class="produto-card">
@@ -62,6 +70,9 @@
                 de espuma.
               </p>
               <span class="preco">R$ 12,00</span>
+              <button class="add-to-cart-btn" data-id="4">
+                Adicionar ao Carrinho
+              </button>
             </article>
 
             <article class="produto-card">
@@ -74,6 +85,9 @@
                 desenhos feitos na espuma.
               </p>
               <span class="preco">R$ 14,00</span>
+              <button class="add-to-cart-btn" data-id="3">
+                Adicionar ao Carrinho
+              </button>
             </article>
 
             <article class="produto-card">
@@ -89,6 +103,9 @@
                 suave e com mais volume.
               </p>
               <span class="preco">R$ 14,00</span>
+              <button class="add-to-cart-btn" data-id="5">
+                Adicionar ao Carrinho
+              </button>
             </article>
 
             <article class="produto-card">
@@ -98,6 +115,9 @@
               <h3>Café Duplo</h3>
               <p>Duas doses de espresso para um café mais forte e intenso.</p>
               <span class="preco">R$ 9,00</span>
+              <button class="add-to-cart-btn" data-id="6">
+                Adicionar ao Carrinho
+              </button>
             </article>
 
             <article class="produto-card">
@@ -110,6 +130,9 @@
                 quantidade de leite quente.
               </p>
               <span class="preco">R$ 7,00</span>
+              <button class="add-to-cart-btn" data-id="7">
+                Adicionar ao Carrinho
+              </button>
             </article>
           </div>
         </div>
@@ -130,6 +153,9 @@
                 é coberto com chantilly e cacau em pó.
               </p>
               <span class="preco">R$ 16,00</span>
+              <button class="add-to-cart-btn" data-id="8">
+                Adicionar ao Carrinho
+              </button>
             </article>
 
             <article class="produto-card">
@@ -144,6 +170,9 @@
                 Café com uísque e chantilly, uma bebida quente e reconfortante.
               </p>
               <span class="preco">R$ 18,00</span>
+              <button class="add-to-cart-btn" data-id="9">
+                Adicionar ao Carrinho
+              </button>
             </article>
 
             <article class="produto-card">
@@ -156,6 +185,9 @@
                 baunilha.
               </p>
               <span class="preco">R$ 19,00</span>
+              <button class="add-to-cart-btn" data-id="10">
+                Adicionar ao Carrinho
+              </button>
             </article>
 
             <article class="produto-card">
@@ -168,6 +200,9 @@
                 batida.
               </p>
               <span class="preco">R$ 17,00</span>
+              <button class="add-to-cart-btn" data-id="11">
+                Adicionar ao Carrinho
+              </button>
             </article>
 
             <article class="produto-card">
@@ -183,6 +218,9 @@
                 longo período.
               </p>
               <span class="preco">R$ 14,00</span>
+              <button class="add-to-cart-btn" data-id="12">
+                Adicionar ao Carrinho
+              </button>
             </article>
 
             <article class="produto-card">
@@ -192,6 +230,9 @@
               <h3>Café Gelado</h3>
               <p>Um café gostoso e refrescante.</p>
               <span class="preco">R$ 8,00</span>
+              <button class="add-to-cart-btn" data-id="2">
+                Adicionar ao Carrinho
+              </button>
             </article>
 
             <article class="produto-card">
@@ -204,6 +245,9 @@
               <h3>Café Macchiato</h3>
               <p>Espresso "manchado" com um pouco de espuma de leite.</p>
               <span class="preco">R$ 14,00</span>
+              <button class="add-to-cart-btn" data-id="13">
+                Adicionar ao Carrinho
+              </button>
             </article>
           </div>
         </div>
@@ -241,6 +285,23 @@
       </section>
     </main>
 
+    <!-- Carrinho de Compras -->
+    <div id="cart-sidebar" class="cart-sidebar">
+      <div class="cart-header">
+        <h3>Meu Pedido</h3>
+        <button id="close-cart" class="close-cart-btn">&times;</button>
+      </div>
+      <div id="cart-items" class="cart-items">
+        <!-- Itens do carrinho serão inseridos aqui via JS -->
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          Total: <span id="cart-total-price">R$ 0,00</span>
+        </div>
+        <button class="checkout-btn">Finalizar Pedido</button>
+      </div>
+    </div>
+    <div id="cart-overlay" class="cart-overlay"></div>
     <!-- Chatbot -->
     <div class="chatbot-container">
       <div id="chat-window" class="chat-window">

@@ -8,6 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- Base de conhecimento e produtos ---
   const knowledgeBase = [];
 
+  // --- Lógica do Carrinho de Compras ---
+  let cart = [];
+  const cartSidebar = document.getElementById("cart-sidebar");
+  const cartOverlay = document.getElementById("cart-overlay");
+  const cartIcon = document.getElementById("cart-icon");
+  const closeCartBtn = document.getElementById("close-cart");
+  const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+
   // --- Lógica do Menu Hambúrguer ---
   const hamburger = document.querySelector(".hamburger");
   const navLinks = document.querySelector(".nav-links");
@@ -153,6 +161,12 @@ document.addEventListener("DOMContentLoaded", () => {
       lowerCaseInput.includes("tchau")
     ) {
       botResponse = "De nada! Se precisar de algo mais, estou à disposição.";
+    } else if (
+      lowerCaseInput.includes("horário") ||
+      lowerCaseInput.includes("funciona") ||
+      lowerCaseInput.includes("aberto")
+    ) {
+      botResponse = findBestMatch("horário de funcionamento");
     } else {
       // Se não for uma saudação/despedida, busca na base de conhecimento
       botResponse = findBestMatch(lowerCaseInput);
@@ -272,6 +286,104 @@ document.addEventListener("DOMContentLoaded", () => {
       clearChat();
     }, 2000);
   }
+  // --- Funções do Carrinho de Compras ---
+
+  function toggleCart() {
+    cartSidebar.classList.toggle("open");
+    cartOverlay.classList.toggle("open");
+  }
+
+  cartIcon.addEventListener("click", toggleCart);
+  closeCartBtn.addEventListener("click", toggleCart);
+  cartOverlay.addEventListener("click", toggleCart);
+
+  addToCartButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const card = e.target.closest(".produto-card");
+      const id = e.target.dataset.id;
+      const name = card.querySelector("h3").innerText;
+      const price = card.querySelector(".preco").innerText;
+      const imgSrc = card.querySelector(".produto-img img").src;
+
+      addToCart({ id, name, price, imgSrc });
+    });
+  });
+
+  function addToCart(product) {
+    const existingProduct = cart.find((item) => item.id === product.id);
+
+    if (existingProduct) {
+      existingProduct.quantity++;
+    } else {
+      cart.push({ ...product, quantity: 1 });
+    }
+
+    updateCartView();
+  }
+
+  function updateCartView() {
+    const cartItemsContainer = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+    const cartTotalPrice = document.getElementById("cart-total-price");
+
+    cartItemsContainer.innerHTML = ""; // Limpa a visualização
+
+    let totalItems = 0;
+    let totalPrice = 0;
+
+    if (cart.length === 0) {
+      cartItemsContainer.innerHTML = "<p>Seu carrinho está vazio.</p>";
+    } else {
+      cart.forEach((item) => {
+        const itemPrice =
+          parseFloat(item.price.replace("R$ ", "").replace(",", ".")) *
+          item.quantity;
+        totalPrice += itemPrice;
+        totalItems += item.quantity;
+
+        const cartItemElement = document.createElement("div");
+        cartItemElement.classList.add("cart-item");
+        cartItemElement.innerHTML = `
+          <img src="${item.imgSrc}" alt="${
+          item.name
+        }" class="cart-item-img">
+          <div class="cart-item-details">
+            <h4>${item.name}</h4>
+            <p>${item.price}</p>
+            <div class="quantity-controls">
+              <button class="quantity-btn" onclick="updateQuantity('${
+                item.id
+              }', ${item.quantity - 1})">-</button>
+              <span>${item.quantity}</span>
+              <button class="quantity-btn" onclick="updateQuantity('${
+                item.id
+              }', ${item.quantity + 1})">+</button>
+            </div>
+          </div>
+        `;
+        cartItemsContainer.appendChild(cartItemElement);
+      });
+    }
+
+    cartCount.innerText = totalItems;
+    cartTotalPrice.innerText = `R$ ${totalPrice.toFixed(2).replace(".", ",")}`;
+  }
+
+  // Tornar a função acessível globalmente para o onclick
+  window.updateQuantity = (id, newQuantity) => {
+    const productIndex = cart.findIndex((item) => item.id === id);
+
+    if (productIndex > -1) {
+      if (newQuantity <= 0) {
+        // Remove o item se a quantidade for 0 ou menor
+        cart.splice(productIndex, 1);
+      } else {
+        cart[productIndex].quantity = newQuantity;
+      }
+    }
+
+    updateCartView();
+  };
 
   // Limpa o corpo do chat, mantendo a mensagem inicial
   function clearChat() {
