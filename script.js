@@ -308,17 +308,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function simulatePaymentAndPrint(method) {
     // 1. Gera o conteúdo da nota
+    const customerNameInput =
+      document.getElementById("customer-name-main") ||
+      document.getElementById("customer-name-menu");
+    const customerName = customerNameInput.value.trim();
     const receiptContainer = document.getElementById("receipt-to-print");
     let receiptHTML = `
-      <h1>Café Aroma</h1>
+      <img src="./assets/logo2.png" alt="Café Aroma" class="logo-print">
+      <h1>Nota Fiscal</h1>
       <p>Data: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}</p>
+      ${customerName ? `<p>Cliente: ${customerName}</p>` : ""}
       <p>Pagamento: ${method.toUpperCase()}</p>
       <hr>
       <ul>
     `;
     let totalPrice = 0;
     cart.forEach((item) => {
-      const itemPrice = parseFloat(item.price.replace("R$ ", "").replace(",", "."));
+      const itemPrice = parseFloat(
+        item.price.replace("R$ ", "").replace(",", ".")
+      );
       const itemTotal = itemPrice * item.quantity;
       totalPrice += itemTotal;
       receiptHTML += `
@@ -342,6 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Limpa e reseta o carrinho após a impressão
     cart = [];
     updateCartView();
+    if (customerNameInput) customerNameInput.value = ""; // Limpa o nome do cliente
     toggleCart();
     checkoutBtn.classList.remove("hidden");
     paymentSection.classList.add("hidden");
@@ -403,9 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const cartItemElement = document.createElement("div");
         cartItemElement.classList.add("cart-item");
         cartItemElement.innerHTML = `
-          <img src="${item.imgSrc}" alt="${
-          item.name
-        }" class="cart-item-img">
+          <img src="${item.imgSrc}" alt="${item.name}" class="cart-item-img">
           <div class="cart-item-details">
             <h4>${item.name}</h4>
             <p>${item.price}</p>
