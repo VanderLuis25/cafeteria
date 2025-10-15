@@ -935,6 +935,12 @@ footer {
 
 @media print {
   /* Esconde tudo, exceto a nota fiscal */
+  body,
+  html {
+    height: auto;
+    margin: 0;
+    padding: 0;
+  }
   body * {
     visibility: hidden;
   }
