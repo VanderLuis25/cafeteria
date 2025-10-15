@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/img/apple-touch-icon.png"
+    />
+    <title>Café Aroma</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <img src="./assets/logo2.png" alt="Café Aroma" />
+        </div>
+        <ul class="nav-links">
+          <li><a href="#home">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#localizacao">Localização</a></li>
+        </ul>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+      </nav>
+    </header>
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-content">
+          <h1>Bem-vindo ao Café Aroma</h1>
+          <p>O melhor café artesanal da cidade.</p>
+          <a href="#produtos" class="btn">Conheça nossos cafés</a>
+        </div>
+      </section>
+      <section id="sobre" class="sobre">
+        <div class="container">
+          <h2>Sobre Nós</h2>
+          <h3>Mais do que um Café, um Ponto de Conexão</h3>
+          <p>
+            Nosso aroma, aquele mesmo de 10 anos atrás, agora se mistura com a
+            energia criativa de nossos clientes. Somos o refúgio para quem busca
+            um momento de inspiração com seu latte art, o local para reuniões de
+            negócios em um ambiente descontraído e profissional, e o cenário
+            perfeito para um encontro que pode começar com um espresso e
+            terminar em uma grande ideia.
+          </p>
+          <h4>
+            Bem-vindo à nossa casa. Onde cada xícara carrega o peso de nossa
+            história e o sabor do que há de mais moderno. Sinta o aroma. Viva a
+            experiência.
+          </h4>
+        </div>
+        <div class="carousel-container">
+          <div class="sobre-img">
+            <img src="./assets/01.jpg" alt="Interior da Cafeteria Café Aroma" />
+            <img src="./assets/02.jpg" alt="Nosso café especial" />
+            <img src="./assets/03.jpg" alt="Ambiente aconchegante" />
+            <img src="./assets/04.jpg" alt="Produtos artesanais" />
+            <img src="./assets/05.jpg" alt="Barista preparando café" />
+            <img src="./assets/06.jpg" alt="Eventos culturais" />
+            <img src="./assets/07.jpg" alt="Detalhes da decoração" />
+            <img src="./assets/08.jpg" alt="Clientes desfrutando" />
+          </div>
+
+          <div class="carousel-progress">
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="produtos" class="produtos">
+        <div class="container">
+          <h2>Nossos Produtos</h2>
+
+          <div class="produtos-grid">
+            <article class="produto-card">
+              <div class="produto-img">
+                <img src="./assets/Café Espresso.jpg" alt=" Café Espresso" />
+              </div>
+              <h3>Café Espresso</h3>
+              <p>Um café forte e encorpado.</p>
+              <span class="preco">R$ 10,00</span>
+            </article>
+
+            <article class="produto-card">
+              <div class="produto-img">
+                <img src="./assets/Café Gelado.jpg" alt="Café Gelado" />
+              </div>
+              <h3>Café Gelado</h3>
+              <p>Um café gostoso e refrescante.</p>
+              <span class="preco">R$ 8,00</span>
+            </article>
+
+            <article class="produto-card">
+              <div class="produto-img">
+                <img src="./assets/Cappuccino.jpg" alt="Café Cappuccino" />
+              </div>
+              <h3>Cappuccino</h3>
+              <p>Café com leite e espuma cremosa e suave.</p>
+              <span class="preco">R$ 14,00</span>
+            </article>
+          </div>
+        </div>
+        <button class="btn-cardapio">
+          <a href="menu.html">Cardápio</a>
+        </button>
+      </section>
+
+      <section id="localizacao" class="localizacao">
+        <div class="container">
+          <h2>Localização</h2>
+          <div class="contato-info">
+            <p>Endereço: Rua do Café, 123 - Centro</p>
+            <p>Telefone: (11) 1234-5678</p>
+            <p>WhatsApp: (11) 98765-4321</p>
+            <p>Email: contato@cafearoma.com</p>
+          </div>
+          <div class="mapa">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7491086.002847058!2d-55.879465724999996!3d-23.541246700000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce584764f24e21%3A0x16f0e07ac3d8d5bb!2sCaf%C3%A9%20Aroma%20Restaurante!5e0!3m2!1spt-BR!2sbr!4v1760404513998!5m2!1spt-BR!2sbr"
+              width="100%"
+              height="400"
+              style="border: 0"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+      <div id="chat-window" class="chat-window">
+        <div class="chat-header">
+          <img
+            src="./assets/atendente.jpg"
+            alt="Atendente"
+            class="atendente-avatar"
+          />
+          <p>Café Aroma - Assistente Virtual</p>
+          <button id="close-chat" class="close-chat-btn">&times;</button>
+        </div>
+        <div id="chat-body" class="chat-body">
+          <div class="chat-message bot">Olá! Como posso ajudar você hoje?</div>
+        </div>
+        <div class="chat-footer">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Digite sua mensagem..."
+          />
+        </div>
+      </div>
+      <button id="chatbot-toggle" class="chatbot-toggle">💬</button>
+    </div>
+    <footer>
+      <p>&copy; 2024 Café Aroma. Todos os direitos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

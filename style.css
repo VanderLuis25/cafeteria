@@ -1,0 +1,697 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+head icon {
+  width: 50px;
+  height: 50px;
+}
+body {
+  color: #333;
+  line-height: 1.6;
+  padding-top: 80px; /* Adicionado para compensar o header fixo */
+}
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+header {
+  background-color: #2c1810;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000; /* Adicionado z-index alto */
+  height: 80px; /* Adicionado altura fixa */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+}
+.logo {
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.logo img {
+  height: 80px; /* Ajuste conforme necessário */
+  margin-right: 10px;
+  vertical-align: middle;
+  display: inline-block;
+  padding: 5px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover {
+  color: #f4a261;
+}
+
+/* --- Estilos do Menu Hambúrguer --- */
+.hamburger {
+  display: none; /* Escondido em telas grandes */
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px 0;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Animação do Hambúrguer para 'X' */
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- Estilos do Dropdown do Menu --- */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none; /* Escondido por padrão */
+  position: absolute;
+  background-color: #3a2218; /* Um pouco mais claro que o header */
+  min-width: 260px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  border-radius: 5px;
+  margin-top: 10px;
+  overflow: hidden; /* Para o border-radius funcionar nos filhos */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Mostra o dropdown quando a classe 'show' é adicionada via JS */
+.dropdown-content.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dropdown-content a {
+  color: #fff; /* Garante que o texto seja branco */
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.hero {
+  background: linear-gradient(rgba(44, 24, 16, 0.233), rgba(29, 15, 10, 0.822)),
+    url("./assets/coffee\ \(1\).jpg") center center/cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  margin-top: -80px; /* Compensa o padding-top do body */
+}
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  background-color: burlywood;
+  color: #615d5d;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: rgba(44, 20, 16, 0.8);
+}
+.sobre {
+  display: flex;
+  padding: 4rem 2rem;
+  background-color: rgba(241, 238, 238, 0.575);
+  text-align: center;
+}
+.sobre .container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+} /* Garante que o container ocupe o espaço */
+.sobre h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #2c1706;
+  margin-top: 25px;
+}
+.sobre p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  color: rgba(43, 9, 2, 0.8);
+}
+.sobre h3 {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #47260a;
+  margin-top: 25px;
+}
+.sobre h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #47260a ;
+  margin-top: 25px;
+  max-width: 400px; 
+  text-align: center;
+}
+/* Estilos do Carrossel - SOMBRAS REMOVIDAS */
+.carousel-container {
+  width: 100%;
+  max-width: 800px; /* Reduzido para melhor encaixe */
+  aspect-ratio: 16 / 9; /* Proporção responsiva */
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  z-index: 1; /* Adicionado z-index baixo */
+  margin-top: 30px;
+}
+
+.sobre-img {
+  width: 800%;
+  height: 100%;
+  display: flex;
+  animation: slideCarousel 32s infinite;
+}
+
+.sobre-img img {
+  width: 12.5%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.3s ease;
+  /* SOMBRAS REMOVIDAS - linhas abaixo comentadas/removidas */
+  /* filter: brightness(0.9); */
+  /* box-shadow: inset 0 0 300px rgb(0, 0, 0); */
+}
+
+/* TODAS AS SOMBRAS FORAM REMOVIDAS - blocos comentados/removidos */
+
+/* Efeito hover individual mantido, mas sem sombras */
+.sobre-img img:hover {
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+@keyframes slideCarousel {
+  0%,
+  11.25% {
+    transform: translateX(0);
+  }
+  12.5%,
+  23.75% {
+    transform: translateX(-12.5%);
+  }
+  25%,
+  36.25% {
+    transform: translateX(-25%);
+  }
+  37.5%,
+  48.75% {
+    transform: translateX(-37.5%);
+  }
+  50%,
+  61.25% {
+    transform: translateX(-50%);
+  }
+  62.5%,
+  73.75% {
+    transform: translateX(-62.5%);
+  }
+  75%,
+  86.25% {
+    transform: translateX(-75%);
+  }
+  87.5%,
+  98.75% {
+    transform: translateX(-87.5%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+/* Pausa no hover */
+.carousel-container:hover .sobre-img {
+  animation-play-state: paused;
+}
+
+/* Indicadores de progresso */
+.carousel-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.progress-bar {
+  height: 100%;
+  background: white;
+  animation: progress 32s infinite linear;
+}
+
+@keyframes progress {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+.produtos {
+  padding: 5rem 2rem;
+  text-align: center;
+  background-color: rgba(241, 238, 238, 0.575);
+}
+.produtos h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #2c1810;
+}
+.produtos p {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: rgba(0, 0, 0, 0.8);
+  max-width: 600px;
+  text-align: center;
+  line-height: 1;
+  line-height: 1.3; /* Aumenta o espaçamento entre linhas */
+  font-weight: 300;
+  margin: 5px;
+}
+
+.produtos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.produto-card {
+  height: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+.produto-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.produto-img {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+}
+.produto-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.produto-card h3 {
+  font-size: 1.5rem;
+  margin: 1rem 0 0.5rem 0;
+  color: #2c1706;
+}
+
+.preco {
+  font-size: 1.5rem;
+  color: rgba(43, 9, 2, 0.8);
+  margin: 1rem 0;
+  font-weight: 700;
+}
+.localizacao {
+  padding: 4rem 2rem;
+  background-color: #f8f6f6;
+  text-align: center;
+}
+.localizacao h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #2c1706;
+}
+.contato-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.mapa {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.mapa iframe {
+  max-width: 100%;
+  height: 350px;
+  border: none;
+  border-radius: 10px;
+  display: block;
+}
+
+/* --- Estilos do Chatbot --- */
+.chatbot-toggle {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #2c1810;
+  color: white;
+  font-size: 2rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.chat-window {
+  position: fixed;
+  bottom: 100px;
+  right: 25px;
+  width: 350px;
+  max-width: 90vw;
+  height: 450px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+  transform: scale(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-in-out;
+}
+
+.chat-window.open {
+  transform: scale(1);
+}
+
+.chat-header {
+  background-color: #2c1810;
+  color: white;
+  padding: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.atendente-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f4a261;
+}
+
+.close-chat-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 5px;
+}
+
+.chat-body {
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chat-message {
+  padding: 0.5rem 1rem;
+  border-radius: 18px;
+  max-width: 80%;
+}
+
+.chat-message.bot {
+  background-color: #f1f0f0;
+  align-self: flex-start;
+}
+
+.chat-message.user {
+  background-color: burlywood;
+  color: white;
+  align-self: flex-end;
+}
+
+.chat-footer {
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.chat-footer input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.end-chat-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  cursor: pointer;
+  align-self: center;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+.end-chat-btn:hover {
+  background-color: #c0392b;
+}
+footer {
+  background-color: #2c1810;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  position: relative;
+}
+
+.btn-cardapio {
+  background-color: rgba(241, 187, 124, 0.952);
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  font-weight: 500;
+  text-transform: none;
+}
+.btn-cardapio:hover {
+  background-color: rgba(44, 20, 16, 0.8);
+  color: #fff;
+}
+.btn-cardapio a {
+  text-decoration: none;
+  color: #868181;
+}
+
+/* ################################## */
+/* ###      MEDIA QUERIES         ### */
+/* ################################## */
+
+/* --- Telas de Tablet (até 992px) --- */
+@media (max-width: 992px) {
+  .sobre {
+    flex-direction: column;
+    align-items: center;
+  }
+  .sobre .container,
+  .sobre .carousel-container {
+    max-width: 90%;
+  }
+  .sobre h4 {
+    width: auto; /* Remove a largura fixa */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* --- Telas de Celular (até 768px) --- */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px; /* Ajusta o padding para o header menor */
+  }
+  header,
+  .navbar,
+  .logo img {
+    height: 70px; /* Header e logo menores */
+  }
+ .container h2 {
+    margin-top: 25px;
+  }
+
+  .nav-links {
+    position: fixed; /* Mudei para fixed para cobrir a tela toda se rolar */
+    top: 70px; /* Abaixo do header */
+    right: -280px; /* Começa fora da tela (largura do menu) */
+    width: 280px; /* Largura fixa para o menu lateral */
+    height: calc(100vh - 70px);
+    background-color: #2c1810;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha os links à esquerda */
+    justify-content: flex-start; /* Alinha o conteúdo ao topo */
+    gap: 1rem; /* Espaçamento entre os links */
+    padding-top: 2rem; /* Espaço no topo do menu */
+    transition: right 0.4s ease-in-out;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
+  }
+
+  .nav-links.active {
+    right: 0; /* Traz o menu para a tela */
+  }
+
+  .nav-links a {
+    font-size: 1.2rem; /* Ajusta o tamanho da fonte */
+    padding: 0.5rem 2rem; /* Adiciona padding para melhor clique */
+    width: 100%; /* Faz o link ocupar a largura do menu */
+  }
+
+  .hamburger {
+    display: block; /* Mostra o hambúrguer */
+  }
+
+  .dropdown-content {
+    position: static; /* Remove o posicionamento absoluto */
+    background-color: transparent;
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+    display: block; /* Sempre visível dentro do menu mobile */
+    text-align: center;
+  }
+
+  .hero {
+    margin-top: -70px; /* Compensa o header menor */
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+
+  .produtos,
+  .sobre,
+  .localizacao {
+    padding: 3rem 1rem;
+  }
+
+  .chatbot-toggle {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    right: 15px;
+    bottom: 15px;
+  }
+
+  .chat-window {
+    bottom: 80px;
+    right: 15px;
+    width: calc(100vw - 30px);
+    height: 400px;
+  }
+}
+
+/* --- Telas de Celular Pequeno (até 480px) --- */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+  .sobre h2,
+  .produtos h2 {
+    font-size: 2.2rem;
+  }
+  .produto-card h3 {
+    font-size: 1.3rem;
+  }
+  .preco {
+    font-size: 1.3rem;
+  }
+  .localizacao h2 {
+    font-size: 1.8rem;
+  }
+   .container h2 {
+    margin-top: 25px;
+  }
+}
