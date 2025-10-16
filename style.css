@@ -936,6 +936,9 @@ footer {
   body > * {
     display: none;
   }
+  header {
+    display: none;
+  }
 
   .receipt-container,
   .receipt-container * {
