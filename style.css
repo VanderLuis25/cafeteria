@@ -937,6 +937,12 @@ footer {
     visibility: hidden;
   }
 
+  /* Garante que o carrinho e o overlay sejam escondidos */
+  .cart-sidebar,
+  .cart-overlay {
+    display: none !important;
+  }
+
   .receipt-container,
   .receipt-container * {
     visibility: visible;
@@ -947,7 +953,7 @@ footer {
     left: 0;
     top: 0;
     width: 100%;
-    font-family: "Courier New", Courier, monospace;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     padding: 20px;
     box-sizing: border-box;
     color: #000;
@@ -966,7 +972,7 @@ footer {
   }
 
   .receipt-header h2 {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin: 0;
   }
 
@@ -1007,7 +1013,7 @@ footer {
   .receipt-total {
     margin-top: 15px;
     padding-top: 10px;
-    border-top: 1px dashed #000;
+    border-top: 2px solid #000;
     font-size: 1.1rem;
     font-weight: bold;
   }

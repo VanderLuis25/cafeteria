@@ -339,7 +339,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalPrice = 0;
     cart.forEach((item) => {
       const itemPrice = parseFloat(
-        item.price.replace("R$ ", "").replace(",", ".")
+        item.price.replace("R$ ", "").replace(".", "").replace(",", ".")
       );
       const itemTotal = itemPrice * item.quantity;
       totalPrice += itemTotal;
