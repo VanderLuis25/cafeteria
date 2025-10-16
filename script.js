@@ -314,14 +314,27 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     const customerName = customerNameInput.value.trim();
     const receiptContainer = document.getElementById("receipt-to-print");
+    const orderNumber = Math.floor(Math.random() * 100000);
+
     let receiptHTML = `
-      <img src="./assets/logo2.png" alt="Café Aroma" class="logo-print">
-      <h1>Nota Fiscal</h1>
-      <p>Data: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}</p>
-      ${customerName ? `<p>Cliente: ${customerName}</p>` : ""}
-      <p>Pagamento: ${method.toUpperCase()}</p>
-      <hr>
-      <ul>
+      <div class="receipt-header">
+        <img src="./assets/logo2.png" alt="Café Aroma" class="logo-print">
+        <h2>Café Aroma</h2>
+        <p>Rua do Café, 123 - Centro</p>
+        <p>Pedido #${orderNumber}</p>
+      </div>
+      <div class="receipt-info">
+        <p><strong>Data:</strong> ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}</p>
+        ${
+          customerName ? `<p><strong>Cliente:</strong> ${customerName}</p>` : ""
+        }
+        <p><strong>Pagamento:</strong> ${method.toUpperCase()}</p>
+      </div>
+      <div class="receipt-items">
+        <div class="receipt-item-header">
+          <span>Produto</span>
+          <span>Total</span>
+        </div>
     `;
     let totalPrice = 0;
     cart.forEach((item) => {
@@ -331,17 +344,25 @@ document.addEventListener("DOMContentLoaded", () => {
       const itemTotal = itemPrice * item.quantity;
       totalPrice += itemTotal;
       receiptHTML += `
-        <li>
+        <div class="receipt-item">
           <span>${item.quantity}x ${item.name}</span>
-          <span>R$ ${itemTotal.toFixed(2).replace(".", ",")}</span>
-        </li>
+          <span class="item-price">R$ ${itemTotal
+            .toFixed(2)
+            .replace(".", ",")}</span>
+        </div>
       `;
     });
     receiptHTML += `
-      </ul>
-      <hr>
-      <h3>Total: R$ ${totalPrice.toFixed(2).replace(".", ",")}</h3>
-      <p>Obrigado e volte sempre!</p>
+      </div>
+      <div class="receipt-total">
+        <span>Total</span>
+        <span class="total-price">R$ ${totalPrice
+          .toFixed(2)
+          .replace(".", ",")}</span>
+      </div>
+      <div class="receipt-footer">
+        <p>Obrigado e volte sempre!</p>
+      </div>
     `;
     receiptContainer.innerHTML = receiptHTML;
 
