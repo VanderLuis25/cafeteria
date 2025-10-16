@@ -939,13 +939,9 @@ footer {
     margin: 0;
     padding: 0;
   }
-  body * {
-    visibility: hidden;
-  }
 
-  /* Garante que o carrinho e o overlay sejam escondidos */
-  .cart-sidebar,
-  .cart-overlay {
+  /* Esconde todos os elementos que não são a nota fiscal */
+  body > *:not(.receipt-container) {
     display: none !important;
   }
 
@@ -955,7 +951,7 @@ footer {
   }
   .receipt-container {
     display: block;
-    position: absolute;
+    position: static; /* Remove o posicionamento absoluto para a impressão */
     left: 0;
     top: 0;
     width: 100%;
