@@ -155,7 +155,7 @@ header {
 
 .hero {
   background: linear-gradient(rgba(44, 24, 16, 0.233), rgba(29, 15, 10, 0.822)),
-    url("./assets/coffee-1.jpg") center center/cover;
+    url("./assets/img/coffee.jpg") center center/cover;
   height: 100vh;
   display: flex;
   justify-content: center;
