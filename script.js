@@ -308,9 +308,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function simulatePaymentAndPrint(method) {
     // 1. Gera o conteúdo da nota
-    const customerNameInput =
-      document.getElementById("customer-name-main") ||
-      document.getElementById("customer-name-menu");
+    // Busca o campo de nome do cliente que estiver visível no carrinho
+    const customerNameInput = document.querySelector(
+      "#cart-sidebar input[type='text']"
+    );
     const customerName = customerNameInput.value.trim();
     const receiptContainer = document.getElementById("receipt-to-print");
     let receiptHTML = `
