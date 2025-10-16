@@ -371,6 +371,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Limpa e reseta o carrinho após a impressão
     cart = [];
+    sessionStorage.removeItem("shoppingCart"); // Limpa o carrinho salvo
     updateCartView();
     if (customerNameInput) customerNameInput.value = ""; // Limpa o nome do cliente
     toggleCart();
@@ -409,6 +410,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateCartView();
+    saveCart(); // Salva o carrinho após adicionar um item
   }
 
   function updateCartView() {
@@ -471,6 +473,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateCartView();
+    saveCart(); // Salva o carrinho após atualizar a quantidade
   };
 
   // Limpa o corpo do chat, mantendo a mensagem inicial
@@ -479,6 +482,20 @@ document.addEventListener("DOMContentLoaded", () => {
       '<div class="chat-message bot">Olá! Como posso ajudar você hoje?</div>';
   }
 
+  // --- Funções de Persistência do Carrinho ---
+  function saveCart() {
+    sessionStorage.setItem("shoppingCart", JSON.stringify(cart));
+  }
+
+  function loadCart() {
+    const savedCart = sessionStorage.getItem("shoppingCart");
+    if (savedCart) {
+      cart = JSON.parse(savedCart);
+    }
+    updateCartView();
+  }
+
   // Extrai os dados da página assim que ela carregar
   buildKnowledgeBase();
+  loadCart(); // Carrega o carrinho salvo ao iniciar a página
 });
